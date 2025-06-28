@@ -1,6 +1,16 @@
 // if you have sql databases then you can use entity. this one more close to meaningful for it.
 
-import { Table, Model, PrimaryKey, AutoIncrement, DataType, Column, ForeignKey, Default, CreatedAt } from "sequelize-typescript";
+import {
+  Table,
+  Model,
+  PrimaryKey,
+  AutoIncrement,
+  DataType,
+  Column,
+  ForeignKey,
+  Default,
+  CreatedAt,
+} from "sequelize-typescript";
 import { User } from "./user.model";
 
 @Table({
@@ -11,7 +21,7 @@ export class UserAddress extends Model<UserAddress> {
   @PrimaryKey
   @AutoIncrement
   @Column(DataType.BIGINT)
- declare id: number;
+  declare id: number;
 
   @ForeignKey(() => User)
   @Column({ type: DataType.BIGINT, allowNull: false })

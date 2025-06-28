@@ -6,7 +6,7 @@ import {
   IsString,
   MinLength,
   Matches,
-} from 'class-validator';
+} from "class-validator";
 // import { UserRole } from '../user-role.enum'; // Assuming you defined enum separately
 
 export class CreateUserDto {
@@ -25,7 +25,7 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   @Matches(/^[0-9]{10,15}$/, {
-    message: 'Phone must be a valid number',
+    message: "Phone must be a valid number",
   })
   phone: string;
 

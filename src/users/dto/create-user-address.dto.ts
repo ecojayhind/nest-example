@@ -5,7 +5,7 @@ import {
   IsString,
   IsBoolean,
   IsPhoneNumber,
-} from 'class-validator';
+} from "class-validator";
 
 export class CreateCustomerAddressDto {
   @IsNotEmpty()
