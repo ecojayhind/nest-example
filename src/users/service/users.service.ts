@@ -1,29 +1,34 @@
 import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { User } from "src/users/schemas/user.schema";
-
+import { InjectModel } from "@nestjs/sequelize";
+import { User } from "../models/user.model";
+import { CreateUserDto } from "../dto/create-user.dto";
 export interface IUser {
   id: number;
   name: string;
   email: string;
 }
-type UserInput = Omit<IUser, "id">;
+export type UserInput = Omit<IUser, "id">;
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User)
+    private readonly userModel: typeof User,
+  ) {}
 
   async findAll(): Promise<User[]> {
-    return this.userModel.find({}, "-password");
+    return this.userModel.findAll({ attributes: { exclude: ["password"] } });
   }
-  async create(user: UserInput): Promise<User> {
-    return await this.userModel.create(user);
+  async create(user: CreateUserDto): Promise<User> {
+    return this.userModel.create(user as any);
   }
   async findOne(id: string) {
-    return this.userModel.findById(id);
+    return this.userModel.findByPk(id);
   }
   async findOneByEmail(email: string) {
-    return this.userModel.findOne({ email });
+    return this.userModel.findOne({ where: { email } });
+  }
+  async remove(id: string) {
+    return this.userModel.destroy({ where: { id } });
   }
 }
