@@ -20,7 +20,7 @@ import { User } from "./user.model";
 export class UserAddress extends Model<UserAddress> {
   @PrimaryKey
   @AutoIncrement
-  @Column(DataType.BIGINT)
+  @Column({ type: DataType.BIGINT })
   declare id: number;
 
   @ForeignKey(() => User)

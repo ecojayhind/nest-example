@@ -5,10 +5,11 @@ import { UsersController } from "./controllers/users.controller";
 // import { User, UserSchema } from "./models/user.schema";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { User } from "./models/user.model";
+import { UserAddress } from "./models/user.address.model";
 
 @Module({
   imports: [
-     SequelizeModule.forFeature([User]),
+    SequelizeModule.forFeature([User, UserAddress]),
     // MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   providers: [UsersService],

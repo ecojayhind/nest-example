@@ -13,6 +13,7 @@ export class CreateCustomerAddressDto {
 
   @IsNotEmpty()
   @IsString()
+  @IsPhoneNumber()
   full_name: string;
 
   @IsNotEmpty()

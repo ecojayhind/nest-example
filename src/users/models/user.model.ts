@@ -15,9 +15,9 @@ import {
   timestamps: true, // enables createdAt and updatedAt
   indexes: [
     {
-      name: 'user_phone_index',
-      fields: ['phone'],
-    }
+      name: "user_phone_index",
+      fields: ["phone"],
+    },
   ],
 })
 export class User extends Model<User> {
