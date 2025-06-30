@@ -9,5 +9,6 @@ import { NotificationChannelLog } from "./models/notification.channel.log.model"
   imports: [SequelizeModule.forFeature([Notification, NotificationChannelLog])],
   controllers: [NotificationsController],
   providers: [NotificationsService],
+  exports: [NotificationsService],
 })
 export class NotificationsModule {}

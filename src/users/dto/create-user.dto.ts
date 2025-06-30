@@ -22,20 +22,23 @@ export class CreateUserDto {
   @MinLength(6)
   password: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @Matches(/^[0-9]{10,15}$/, {
     message: "Phone must be a valid number",
   })
   phone: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   salt: string;
 
   @IsOptional()
   @IsString()
   verify_token?: string;
+
+  @IsOptional()
+  is_verified?: boolean;
 
   @IsOptional()
   role?: string; // Can be 'user', 'admin', etc.

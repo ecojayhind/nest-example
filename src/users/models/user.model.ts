@@ -10,84 +10,53 @@ import {
   Default,
 } from "sequelize-typescript";
 
+// Good ✅: declare tells TypeScript “this exists, Sequelize will define it”
+
 @Table({
   tableName: "users",
-  timestamps: true, // enables createdAt and updatedAt
+  timestamps: true,
   indexes: [
-    {
-      name: "user_phone_index",
-      fields: ["phone"],
-    },
+    { name: "user_phone_index", fields: ["phone"] },
+    { name: "user_verify_token_index", fields: ["verify_token"] },
   ],
 })
 export class User extends Model<User> {
   @PrimaryKey
   @AutoIncrement
-  @Column({
-    type: DataType.BIGINT,
-  })
+  @Column({ type: DataType.BIGINT })
   declare id: number;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  name: string;
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare name: string;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    unique: true,
-  })
-  email: string;
+  @Column({ type: DataType.STRING, allowNull: false, unique: true })
+  declare email: string;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  password: string;
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare password: string;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  phone: string;
+  @Column({ type: DataType.STRING, allowNull: true })
+  declare phone: string;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  salt: string;
+  @Column({ type: DataType.STRING, allowNull: true })
+  declare salt: string;
 
   @Default(false)
-  @Column({
-    type: DataType.BOOLEAN,
-  })
-  is_verified: boolean;
+  @Column({ type: DataType.BOOLEAN })
+  declare is_verified: boolean;
 
-  // verify token
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  verify_token: string;
+  @Column({ type: DataType.STRING, allowNull: true })
+  declare verify_token: string;
 
   @Default("user")
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  role: string;
+  @Column({ type: DataType.STRING })
+  declare role: string;
 
   @CreatedAt
-  @Column({
-    type: DataType.DATE,
-  })
+  @Column({ type: DataType.DATE })
   declare created_at: Date;
 
   @UpdatedAt
-  @Column({
-    type: DataType.DATE,
-  })
+  @Column({ type: DataType.DATE })
   declare updated_at: Date;
 }

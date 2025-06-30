@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { User } from "../models/user.model";
 import { CreateUserDto } from "../dto/create-user.dto";
+import { UpdateUserDto } from "../dto/update-user.dto";
 export interface IUser {
   id: number;
   name: string;
@@ -30,5 +31,8 @@ export class UsersService {
   }
   async remove(id: string) {
     return this.userModel.destroy({ where: { id } });
+  }
+  async updateById(id: number, updateUserDto: UpdateUserDto) {
+    return this.userModel.update(updateUserDto, { where: { id } });
   }
 }
